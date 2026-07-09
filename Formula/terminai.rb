@@ -19,9 +19,6 @@ class Terminai < Formula
 
   license "MIT"
 
-  conflicts_with "terminai@0.1.2", "terminai@0.1.3",
-    because: "all Terminai formulae install the terminai binary"
-
   def install
     bin.install "terminai"
   end
