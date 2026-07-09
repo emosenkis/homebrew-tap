@@ -1,4 +1,4 @@
-class Terminai < Formula
+class TerminaiAT013 < Formula
   desc "Interactive terminal wrapper with AI assistant"
   homepage "https://github.com/emosenkis/terminai"
 
@@ -18,8 +18,9 @@ class Terminai < Formula
   end
 
   license "MIT"
+  version "0.1.3"
 
-  conflicts_with "terminai@0.1.2", "terminai@0.1.3",
+  conflicts_with "terminai", "terminai@0.1.2",
     because: "all Terminai formulae install the terminai binary"
 
   def install
@@ -28,28 +29,6 @@ class Terminai < Formula
 
   def post_install
     system bin/"terminai", "init-config"
-  end
-
-  def caveats
-    <<~EOS
-      Terminai runs your configured CLI agent in a PTY-backed overlay.
-      It does not store AI credentials or choose models itself.
-
-      The default config has been initialized at:
-        ~/.config/terminai/terminai.yaml
-
-      Next, authenticate your chosen CLI agent:
-        $ codex login
-        # or:
-        $ claude auth
-
-      To use Terminai:
-        $ terminai
-
-      Press Ctrl+Space to open the CLI-agent overlay.
-
-      For more information, see: https://github.com/emosenkis/terminai
-    EOS
   end
 
   test do
