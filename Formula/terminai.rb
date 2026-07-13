@@ -1,6 +1,7 @@
 class Terminai < Formula
   desc "Interactive terminal wrapper with AI assistant"
   homepage "https://github.com/emosenkis/terminai"
+  version "0.1.5"
 
   if OS.mac?
     if Hardware::CPU.arm?
