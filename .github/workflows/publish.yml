@@ -27,7 +27,48 @@ jobs:
       - name: Set up git
         uses: Homebrew/actions/git-user-config@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
 
+      - name: Check for already-published bottles
+        id: published
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PULL_REQUEST: ${{ inputs.pull_request }}
+        run: |
+          set -euo pipefail
+
+          pr_json="$(gh api "repos/${GITHUB_REPOSITORY}/pulls/${PULL_REQUEST}")"
+          if [[ "$(jq -r '.merged' <<<"$pr_json")" != "true" ]]
+          then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          files_json="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PULL_REQUEST}/files")"
+          formulae="$(jq -r '.[].filename | select(startswith("Formula/") and endswith(".rb")) | sub("^Formula/"; "") | sub("\\.rb$"; "")' <<<"$files_json" | sort -u)"
+          if [[ -z "$formulae" ]]
+          then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          missing=0
+          for formula in $formulae
+          do
+            if ! grep -q "^[[:space:]]*bottle do" "Formula/${formula}.rb"
+            then
+              missing=1
+            fi
+          done
+
+          if [[ "$missing" -eq 0 ]]
+          then
+            echo "Formula bottles are already published on main."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Pull bottles
+        if: steps.published.outputs.skip != 'true'
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HEAD_SHA: ${{ inputs.head_sha }}
@@ -41,6 +82,7 @@ jobs:
           fi
 
       - name: Push commits
+        if: steps.published.outputs.skip != 'true'
         uses: Homebrew/actions/git-try-push@1f8e202ffddf94def7f42f6fa3a482e821489f9c # 2026.07.10.1
         with:
           branch: main
