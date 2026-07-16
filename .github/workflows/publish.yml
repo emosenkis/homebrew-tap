@@ -84,6 +84,9 @@ jobs:
             # `brew pr-pull` cherry-picks the PR. For a merged PR, start from
             # its original base so that cherry-pick is not empty.
             git -C "$tap_repository" reset --hard "$BASE_SHA"
+            # Homebrew uses this workflow SHA to determine which formulae
+            # changed. Compare against the PR base while replaying it.
+            export GITHUB_SHA="$BASE_SHA"
           fi
 
           if [[ -n "$HEAD_SHA" ]]
