@@ -2,8 +2,8 @@ class Terminai < Formula
   desc "Interactive terminal wrapper with AI assistant"
   homepage "https://github.com/emosenkis/terminai"
   url "https://github.com/emosenkis/terminai.git",
-      tag:      "v0.1.15",
-      revision: "2e102cac8f5336bc32abff42794e2a9e85f4839d"
+      tag:      "v0.1.16",
+      revision: "2df31f0d7a192787f2fe8476fb574991ca99ffdf"
   license "MIT"
 
   bottle do
