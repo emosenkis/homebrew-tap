@@ -5,6 +5,8 @@ class Terminai < Formula
   sha256 "0c504a8c3d63835b2dc790d43bcabb17ba02e947795c7b9634904109a67f5fa2"
   license "MIT"
 
+  depends_on "rust" => :build
+
   resource "ratatui" do
     url "https://github.com/emosenkis/ratatui/archive/36ef83e95b2d4ddd3268fa648930cff79d2ea33b.tar.gz"
     sha256 "1ecf8d1c9f017d1aacc636d47ba3a94bcff0f745ea34ad879c3712eae481a6e9"
@@ -19,8 +21,6 @@ class Terminai < Formula
     url "https://github.com/emosenkis/terminai-redact/archive/9af9fdd7aac08267045527c143a51892b83de747.tar.gz"
     sha256 "a1f2e0e267a068a11f9e5e216589d3f17676e58a7ff98d3bb7b22726130c1d11"
   end
-
-  depends_on "rust" => :build
 
   def install
     resource("ratatui").stage { (buildpath/"ratatui").install Dir["*"] }
