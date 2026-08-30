@@ -5,6 +5,12 @@ class Terminai < Formula
   sha256 "43b063e120cf0f871a4f047e8a10fa8ba806bd624e5e9d5b7b091489338476d5"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/emosenkis/homebrew-tap/releases/download/terminai-0.1.22"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "1857938d72c788819c922d48bbad55cf9aa18f78ec64a3a7605b93c4f4013c49"
+    sha256 cellar: :any,                 x86_64_linux: "4f0b0ef8748fb41b31a529f65d5ddd3c3e09ce6fc0fa20d2e16d2d7bff066324"
+  end
+
   depends_on "rust" => :build
 
   resource "ratatui" do
