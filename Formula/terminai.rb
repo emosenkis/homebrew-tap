@@ -1,15 +1,9 @@
 class Terminai < Formula
   desc "Interactive terminal wrapper with AI assistant"
   homepage "https://github.com/emosenkis/terminai"
-  url "https://github.com/emosenkis/terminai/archive/refs/tags/v0.1.21.tar.gz"
-  sha256 "0c504a8c3d63835b2dc790d43bcabb17ba02e947795c7b9634904109a67f5fa2"
+  url "https://github.com/emosenkis/terminai/archive/refs/tags/v0.1.22.tar.gz"
+  sha256 "43b063e120cf0f871a4f047e8a10fa8ba806bd624e5e9d5b7b091489338476d5"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/emosenkis/homebrew-tap/releases/download/terminai-0.1.21"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "7e8943796ebcc1950dffc0e6b8e917bbcbc1ef9ee920b756e3b1ef123586926c"
-    sha256 cellar: :any,                 x86_64_linux: "55e5e78bf42c1546ea9732b84622cd29eec46b2098175fbd818539a06832d9dd"
-  end
 
   depends_on "rust" => :build
 
