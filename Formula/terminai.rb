@@ -6,9 +6,9 @@ class Terminai < Formula
   license "MIT"
 
   bottle do
-    root_url "https://github.com/emosenkis/homebrew-tap/releases/download/terminai-0.1.22"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "1857938d72c788819c922d48bbad55cf9aa18f78ec64a3a7605b93c4f4013c49"
-    sha256 cellar: :any,                 x86_64_linux: "4f0b0ef8748fb41b31a529f65d5ddd3c3e09ce6fc0fa20d2e16d2d7bff066324"
+    root_url "https://github.com/emosenkis/homebrew-tap/releases/download/terminai-0.1.23"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "b18144f388ebbf8e655685e8e39dec2a25bf7d8bf9ae1ac3cfeda49ce059f61f"
+    sha256 cellar: :any,                 x86_64_linux: "b7629bb887f7dc80e131facc9e4fe3c29dffaa7b1e36dfdcb51b184f5f936f89"
   end
 
   depends_on "rust" => :build
