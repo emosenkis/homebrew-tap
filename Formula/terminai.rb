@@ -1,8 +1,8 @@
 class Terminai < Formula
   desc "Interactive terminal wrapper with AI assistant"
   homepage "https://github.com/emosenkis/terminai"
-  url "https://github.com/emosenkis/terminai/archive/refs/tags/v0.1.26.tar.gz"
-  sha256 "2bf3d70c767d7b280f254ebb1d8f4f34c3a4029841e66199cb56948fe8cec0af"
+  url "https://github.com/emosenkis/terminai/archive/refs/tags/v0.1.27.tar.gz"
+  sha256 "232d56a9c6811962c99fe8825b7e9f6f5bf52a737977453d45e243f18c8310c1"
   license "MIT"
 
   bottle do
